@@ -73,16 +73,25 @@ router.patch('/todo/:todoid', async (req, res) => {
 })
 
 // Delete todo
+
 router.delete('/todo/:todoid', async (req, res) => {
 
    try {
+      // Menghapus todo yang sudah dikerjakan
       let todo = await Todo.findByIdAndDelete(req.params.todoid)
+      // Menghapis id todo yang sudah dikerjakan dari array 'todos' pada user
+      let user = await User.findById(todo.owner)
+      user.todos = user.todos.filter(todoId => {
+         return todo._id !== todoId
+      })
+
+      // Menyimpan hasil perubahan user
+      await user.save()
+
       res.send('Delete Berhasil')
    } catch (err) {
       res.send(err)
    }
-
-
 })
 
 
