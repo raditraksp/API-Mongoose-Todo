@@ -7,7 +7,7 @@ dotenv.config()
 const express = require('express')
 const cors = require('cors')
 const app = express()
-const port = 2020
+const port = process.env.PORT //menggunakan port yang di sediakan heroku
 
 // IMPORT ROUTER
 const userRoute = require('./src/route/userRoute')
