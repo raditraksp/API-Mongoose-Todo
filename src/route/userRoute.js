@@ -115,7 +115,7 @@ router.get('/user/:id', async (req, res) => {
 
       // Kirim user sebagai bentu respon
       // Untuk membuat photo tidak perlu di refresh sehabis di edit
-      res.send({user, photo : `http://localhost:2020/user/avatar/${_id}?time=${Date.now()}` })
+      res.send({user, photo : `https://raditra-mongoose-api.herokuapp.com/user/avatar/${_id}?time=${Date.now()}` })
 
    } catch (err){ // Jika terjadi masalah dalam proses pencarian data
       res.send(err)
